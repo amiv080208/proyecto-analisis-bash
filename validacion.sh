@@ -13,4 +13,4 @@ if ! unzip -q "$archivo_zip" -d "$temporal"; then
     echo "Error: no se pudo descomprimir el ZIP"
     exit 1
 fi
-echo "Archivos descomprimidos en: $temporal"
+echo "$temporal"

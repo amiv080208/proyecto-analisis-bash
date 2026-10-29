@@ -1,3 +1,6 @@
+
+#!/bin/bash
+destino=$1
 analizados=0
 archivos_cv2=0
 archivos_pyside6=0
@@ -46,7 +49,7 @@ while IFS= read -r -d '' archivo; do
         fi
     fi
 
-done < <(find "$destino/codigo" -type f -name '*.py' -print0)
+done < <(find "$destino/py" -type f -name '*.py' -print0)
 
 echo ""
 echo " RESUMEN FINAL"
@@ -60,10 +63,6 @@ echo ""
 echo "Directorio de resultados: $destino"
 
 # Informar si hubo problemas durante la clasificación.
-if [ "$conflictos" -gt 0 ] || [ "$errores_copia" -gt 0 ]; then
-    echo "Aviso: la clasificación tuvo conflictos o errores."
-    exit 1
-fi
 
 echo "Proceso completado correctamente."
 exit 0
