@@ -3,9 +3,8 @@ archivos_cv2=0
 archivos_pyside6=0
 
 echo ""
-echo "=========================================="
 echo " AUDITORÍA DE CÓDIGO PYTHON"
-echo "=========================================="
+echo ""
 
 # Buscar los archivos .py de la carpeta codigo.
 while IFS= read -r -d '' archivo; do
@@ -48,3 +47,23 @@ while IFS= read -r -d '' archivo; do
     fi
 
 done < <(find "$destino/codigo" -type f -name '*.py' -print0)
+
+echo ""
+echo " RESUMEN FINAL"
+echo ""
+
+echo "Archivos Python analizados: $analizados"
+echo "Archivos que contienen cv2: $archivos_cv2"
+echo "Archivos que contienen PySide6: $archivos_pyside6"
+
+echo ""
+echo "Directorio de resultados: $destino"
+
+# Informar si hubo problemas durante la clasificación.
+if [ "$conflictos" -gt 0 ] || [ "$errores_copia" -gt 0 ]; then
+    echo "Aviso: la clasificación tuvo conflictos o errores."
+    exit 1
+fi
+
+echo "Proceso completado correctamente."
+exit 0
